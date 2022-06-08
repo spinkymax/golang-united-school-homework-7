@@ -137,3 +137,49 @@ func TestNew(t *testing.T) {
 		})
 	}
 }
+func TestRows(t *testing.T) {
+	t.Parallel()
+	tData := map[string]struct {
+		M        Matrix
+		Expected [][]int
+	}{
+		"success": {M: Matrix{rows: 2, cols: 2, data: []int{1, 2, 3, 4}}, Expected: [][]int{{1, 2}, {3, 4}}},
+	}
+	for name, tcase := range tData {
+		v := tcase
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+			rows := v.M.Rows()
+			for i := range rows {
+				for j := range rows[i] {
+					if rows[i][j] != v.Expected[i][j] {
+						t.Errorf("[%s] expected: %v, got %v", name, v.Expected, rows)
+					}
+				}
+			}
+		})
+	}
+}
+func TestCols(t *testing.T) {
+	t.Parallel()
+	tData := map[string]struct {
+		M        Matrix
+		Expected [][]int
+	}{
+		"success": {M: Matrix{rows: 2, cols: 2, data: []int{1, 2, 3, 4}}, Expected: [][]int{{1, 3}, {2, 4}}},
+	}
+	for name, tcase := range tData {
+		v := tcase
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+			cols := v.M.Cols()
+			for i := range cols {
+				for j := range cols[i] {
+					if cols[i][j] != v.Expected[i][j] {
+						t.Errorf("[%s] expected: %v, got %v", name, v.Expected, cols)
+					}
+				}
+			}
+		})
+	}
+}
