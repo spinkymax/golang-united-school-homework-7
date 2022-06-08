@@ -1,13 +1,11 @@
 package coverage
 
 import (
+	"errors"
 	"os"
+	"strconv"
 	"testing"
 	"time"
-	"errors"
-	"fmt"
-	"strconv"
-	"strings"
 	
 )
 
