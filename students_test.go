@@ -66,7 +66,7 @@ func TestLess(t *testing.T) {
 			t.Parallel()
 			got := v.A.Less(v.i, v.j)
 			if got != v.Expected {
-				t.Errorf("[%s] expected: %d, got %d", name, v.Expected, v.A)
+				t.Errorf("[%s] expected: %v, got %v", name, v.Expected, v.A)
 			}
 		})
 	}
@@ -79,7 +79,7 @@ func TestSwap(t *testing.T) {
 		j int
 	}{
 		"swapping": {People{Person{firstName: "Vitaly", lastName: "Donikov", birthDay: time.Date(1987, 05, 18, 0, 0, 0, 0, time.UTC)},
-			Person{firstName: "Dmitry", lastName: "Tolkachev", birthDay: time.Date(1987, 11, 15, 0, 0, 0, 0, time.UTC)}}, 0, 1},
+							Person{firstName: "Dmitry", lastName: "Tolkachev", birthDay: time.Date(1987, 11, 15, 0, 0, 0, 0, time.UTC)}}, 0, 1},
 	}
 
 	for name, tcase := range tData {
@@ -91,7 +91,7 @@ func TestSwap(t *testing.T) {
 				if v.A[0].lastName != "Tolkachev" || v.A[1].lastName != "Donikov" {
 					if v.A[0].birthDay != time.Date(1987, 11, 15, 0, 0, 0, 0, time.UTC) || v.A[1].birthDay != time.Date(1987, 05, 18, 0, 0, 0, 0, time.UTC) {
 
-						t.Errorf("[%s] expected: %d, got %d", name, v.A[0], v.A[1])
+						t.Errorf("[%s] expected: %v, got %v", name, v.A[0], v.A[1])
 					}
 				}
 			}
@@ -99,6 +99,7 @@ func TestSwap(t *testing.T) {
 
 	}
 }
+
 func TestNew(t *testing.T) {
 	var ErrSize = errors.New("Rows need to be the same length")
 	var _, ErrAtoi = strconv.Atoi("a")
@@ -153,7 +154,7 @@ func TestRows(t *testing.T) {
 			for i := range rows {
 				for j := range rows[i] {
 					if rows[i][j] != v.Expected[i][j] {
-						t.Errorf("[%s] expected: %v, got %v", name, v.Expected, rows)
+						t.Errorf("[%s] expected: %v got %v", name, v.Expected, rows)
 					}
 				}
 			}
