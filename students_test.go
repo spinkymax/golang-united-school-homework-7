@@ -183,3 +183,26 @@ func TestCols(t *testing.T) {
 		})
 	}
 }
+func TestSet(t *testing.T) {
+	t.Parallel()
+	tData := map[string]struct {
+		M               Matrix
+		row, col, value int
+		Expected        bool
+	}{
+		"succes":   {M: Matrix{rows: 2, cols: 2, data: []int{1, 2, 3, 4}}, row: 1, col: 1, value: 2, Expected: true},
+		"rows_<_0": {M: Matrix{rows: 2, cols: 2, data: []int{1, 2, 3, 4}}, row: -1, col: 2, value: 4, Expected: false},
+		"cols_<_0": {M: Matrix{rows: 2, cols: 2, data: []int{1, 2, 3, 4}}, row: 2, col: -1, value: 4, Expected: false},
+	}
+
+	for name, tcase := range tData {
+		v := tcase
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+			got := v.M.Set(v.row, v.col, v.value)
+			if got != v.Expected {
+				t.Errorf("[%s] expected %v got %v", name, v.Expected, got)
+			}
+		})
+	}
+}
