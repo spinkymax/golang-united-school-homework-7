@@ -110,7 +110,7 @@ func TestNew(t *testing.T) {
 		Err      error
 	}{
 		"succes":              {str: "1 2 3 \n 4 5 6 \n7 8 9", Expected: &Matrix{rows: 3, cols: 3, data: []int{1, 2, 3, 4, 5, 6, 7, 8, 9}}, Err: nil},
-		"matrix_size":         {str: "10 11\n 12 13 ", Expected: nil, Err: ErrSize},
+		"matrix_size":         {str: "10 11\n 12 ", Expected: nil, Err: ErrSize},
 		"letters_into_matrix": {str: "a b c\n a x z", Expected: nil, Err: ErrAtoi},
 	}
 
