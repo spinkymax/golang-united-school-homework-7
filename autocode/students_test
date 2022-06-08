@@ -22,7 +22,6 @@ func init() {
 }
 
 // WRITE YOUR CODE BELOW
-<<<<<<< HEAD
 func TestLen(t *testing.T) {
 	t.Parallel()
 	tData := map[string]struct {
@@ -208,5 +207,3 @@ func TestSet(t *testing.T) {
 		})
 	}
 }
-=======
->>>>>>> 61967f35c346acf7a6239d2c30bab762b6541ad4
