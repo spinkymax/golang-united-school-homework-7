@@ -96,4 +96,41 @@ func TestSwap(t *testing.T) {
 
 	}
 }
+func TestNew(t *testing.T) {
+	var ErrSize = errors.New("Rows need to be the same length")
+	var _, ErrAtoi = strconv.Atoi("a")
+	t.Parallel()
+	tData := map[string]struct {
+		str      string
+		Expected *Matrix
+		Err      error
+	}{
+		"succes":              {str: "1 2 3 \n 4 5 6 \n7 8 9", Expected: &Matrix{rows: 3, cols: 3, data: []int{1, 2, 3, 4, 5, 6, 7, 8, 9}}, Err: nil},
+		"matrix_size":         {str: "10 11\n 12 13 ", Expected: nil, Err: ErrSize},
+		"letters_into_matrix": {str: "a b c\n a x z", Expected: nil, Err: ErrAtoi},
+	}
 
+	for name, tCase := range tData {
+		v := tCase
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+			got, err := New(v.str)
+			c := false
+			if err != nil && err.Error() != v.Err.Error() {
+				t.Errorf("[%s] expected error: %v, got error: %v", name, v.Err, err)
+			}
+			if v.Expected != nil {
+				for k, i := range got.data {
+					if v.Expected.data[k] != i {
+						c = true
+					}
+				}
+				if got.cols != v.Expected.cols || got.rows != v.Expected.rows || c {
+					t.Errorf("[%s] expected: %v, got: %v", name, v.Expected, got)
+
+				}
+			}
+
+		})
+	}
+}
