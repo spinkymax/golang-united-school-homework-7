@@ -29,7 +29,7 @@ func TestLen(t *testing.T) {
 		Expected int
 	}{
 		"success": {make([]Person, 1), 1},
-		"fail":    {make([]Person, 0), 0},
+		"succes1":    {make([]Person, 0), 0},
 	}
 
 	for name, tcase := range tData {
